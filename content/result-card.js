@@ -47,6 +47,7 @@
         <button class="jp-ocr-card-close">×</button>
       </div>
       <div class="jp-ocr-card-reading"></div>
+      <div class="jp-ocr-card-romaji"></div>
       <div class="jp-ocr-card-pos"></div>
       <div class="jp-ocr-card-meaning"></div>
       <div class="jp-ocr-card-example-jp"></div>
@@ -55,6 +56,7 @@
     `;
     card.querySelector('.jp-ocr-card-word').textContent = r.word || '';
     card.querySelector('.jp-ocr-card-reading').textContent = r.reading ? `【${r.reading}】` : '';
+    card.querySelector('.jp-ocr-card-romaji').textContent = r.romaji || '';
     card.querySelector('.jp-ocr-card-pos').textContent = r.pos || '';
     card.querySelector('.jp-ocr-card-meaning').textContent = r.meaning_zh || '';
     card.querySelector('.jp-ocr-card-example-jp').textContent = r.example_jp || '';

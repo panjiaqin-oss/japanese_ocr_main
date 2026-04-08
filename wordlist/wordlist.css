@@ -30,6 +30,7 @@ main {
 .card.pinned { border-color: #fbbf24; background: #fffbeb; }
 .card .word { font-size: 24px; font-weight: 700; }
 .card .reading { color: #6b7280; font-size: 13px; }
+.card .romaji { color: #9ca3af; font-size: 12px; font-style: italic; }
 .card .pos {
   display: inline-block; background: #eef2ff; color: #4f46e5;
   padding: 2px 8px; border-radius: 4px; font-size: 12px;

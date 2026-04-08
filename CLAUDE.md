@@ -26,14 +26,14 @@ Service worker reads settings from `chrome.storage.local`, calls `lib/ai-provide
 ### AI provider abstraction
 `lib/ai-providers.js` is the single place that knows HTTP shapes for Claude / OpenAI / Gemini. All providers share one prompt from `lib/prompt.js` that demands **strict JSON** (no markdown fences). `parseJsonLoose()` tolerates fenced output by extracting the first `{...}` block. The expected shape is:
 ```
-{ word, reading, pos, meaning_zh, example_jp, example_zh }   // or { error }
+{ word, reading, romaji, pos, meaning_zh, example_jp, example_zh }   // or { error }
 ```
 `DEFAULT_MODELS` is the fallback when the user leaves the model field blank in options. The Claude call uses the `anthropic-dangerous-direct-browser-access: true` header because the request originates from an extension origin — do **not** remove this without switching to a proxy.
 
 ### Storage contract
 `chrome.storage.local` holds two keys managed by `lib/storage.js`:
 - `settings`: `{provider, apiKey, model}`
-- `words`: array of `{id, word, reading, pos, meaning_zh, example_jp, example_zh, createdAt, pinned}`; newest unshifted to front. `sortWords()` returns pinned-first then createdAt desc — the wordlist page relies on this ordering and re-renders on `chrome.storage.onChanged`.
+- `words`: array of `{id, word, reading, romaji, pos, meaning_zh, example_jp, example_zh, createdAt, pinned}`; newest unshifted to front. `sortWords()` returns pinned-first then createdAt desc — the wordlist page relies on this ordering and re-renders on `chrome.storage.onChanged`.
 
 ### Two content scripts, one flag each
 `selector.js` and `result-card.js` both guard against double-injection with `window.__jpOcrSelectorLoaded` / `__jpOcrCardLoaded` because the service worker may `executeScript` them on top of the manifest auto-injection. `result-card.js` exposes its API via `window.__jpOcr*` globals rather than messages because `selector.js` calls it directly after the crop.
