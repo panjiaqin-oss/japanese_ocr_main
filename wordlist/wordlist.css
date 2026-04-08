@@ -9,7 +9,11 @@ header {
   display: flex; align-items: center; justify-content: space-between;
 }
 h1 { margin: 0; font-size: 20px; }
-.meta { color: #6b7280; font-size: 13px; }
+.meta { color: #6b7280; font-size: 13px; display: flex; align-items: center; gap: 12px; }
+.meta select {
+  padding: 6px 10px; border: 1px solid #e5e7eb; border-radius: 6px;
+  background: #fff; font-size: 13px; cursor: pointer;
+}
 main {
   padding: 24px 32px;
   display: grid;

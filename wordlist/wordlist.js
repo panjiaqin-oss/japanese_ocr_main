@@ -3,6 +3,13 @@ import { getWords, deleteWord, togglePin, sortWords } from '../lib/storage.js';
 const grid = document.getElementById('grid');
 const empty = document.getElementById('empty');
 const count = document.getElementById('count');
+const sortSel = document.getElementById('sort');
+
+const SORT_KEY = 'wordlist_sort_mode';
+sortSel.value = localStorage.getItem(SORT_KEY) || 'date';
+
+// 隨機排序的種子快取：只有在選擇「隨機」或按下重排時才重新產生，避免每次 storage 變動就打亂
+let randomCache = null;
 
 function escape(s) {
   return String(s ?? '').replace(/[&<>"']/g, c => ({
@@ -11,7 +18,15 @@ function escape(s) {
 }
 
 async function render() {
-  const words = sortWords(await getWords());
+  const mode = sortSel.value;
+  let raw = await getWords();
+  if (mode === 'random') {
+    if (!randomCache) {
+      randomCache = new Map(raw.map(w => [w.id, Math.random()]));
+    }
+    raw = raw.map(w => ({ ...w, _r: randomCache.get(w.id) ?? Math.random() }));
+  }
+  const words = sortWords(raw, mode);
   count.textContent = words.length;
   if (words.length === 0) {
     grid.innerHTML = '';
@@ -52,6 +67,12 @@ grid.addEventListener('click', async (e) => {
 
 chrome.storage.onChanged.addListener((changes) => {
   if (changes.words) render();
+});
+
+sortSel.addEventListener('change', () => {
+  localStorage.setItem(SORT_KEY, sortSel.value);
+  randomCache = null; // 切換模式時重抽
+  render();
 });
 
 render();

@@ -8,7 +8,14 @@
 <body>
   <header>
     <h1>📖 日文單字本</h1>
-    <div class="meta"><span id="count">0</span> 個單字</div>
+    <div class="meta">
+      <span id="count">0</span> 個單字
+      <select id="sort">
+        <option value="date">建立日期</option>
+        <option value="alpha">字母順序</option>
+        <option value="random">隨機</option>
+      </select>
+    </div>
   </header>
   <main id="grid"></main>
   <div id="empty" hidden>還沒有單字。在任何網頁按 Ctrl/Cmd+Shift+J 框選日文開始學習吧！</div>
