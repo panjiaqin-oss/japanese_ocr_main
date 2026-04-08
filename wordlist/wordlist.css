@@ -1,0 +1,49 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: #f9fafb; color: #111827;
+  font: 14px -apple-system, system-ui, "Noto Sans TC", sans-serif;
+}
+header {
+  padding: 20px 32px; background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex; align-items: center; justify-content: space-between;
+}
+h1 { margin: 0; font-size: 20px; }
+.meta { color: #6b7280; font-size: 13px; }
+main {
+  padding: 24px 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: #fff; border-radius: 12px; padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  display: flex; flex-direction: column;
+  position: relative;
+}
+.card.pinned { border-color: #fbbf24; background: #fffbeb; }
+.card .word { font-size: 24px; font-weight: 700; }
+.card .reading { color: #6b7280; font-size: 13px; }
+.card .pos {
+  display: inline-block; background: #eef2ff; color: #4f46e5;
+  padding: 2px 8px; border-radius: 4px; font-size: 12px;
+  margin: 6px 0; align-self: flex-start;
+}
+.card .meaning { font-size: 16px; margin: 4px 0 10px; }
+.card .example-jp { color: #374151; padding-top: 10px; border-top: 1px solid #f3f4f6; }
+.card .example-zh { color: #6b7280; font-size: 13px; margin-top: 2px; }
+.card .actions {
+  margin-top: 12px; display: flex; gap: 8px; justify-content: flex-end;
+}
+.card button {
+  padding: 6px 12px; border: 1px solid #e5e7eb; background: #fff;
+  border-radius: 6px; cursor: pointer; font-size: 12px;
+}
+.card button:hover { background: #f3f4f6; }
+.card .pin-btn.active { background: #fbbf24; border-color: #f59e0b; color: #fff; }
+.card .del-btn:hover { background: #fee2e2; border-color: #fca5a5; color: #dc2626; }
+#empty {
+  text-align: center; padding: 80px 32px; color: #9ca3af;
+}

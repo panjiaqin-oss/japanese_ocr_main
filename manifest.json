@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "日文 OCR 單字學習",
+  "version": "0.1.0",
+  "description": "框選網頁上的日文，AI 自動辨識翻譯並建立單字本。",
+  "permissions": ["activeTab", "storage", "contextMenus", "scripting", "tabs"],
+  "host_permissions": [
+    "https://api.anthropic.com/*",
+    "https://api.openai.com/*",
+    "https://generativelanguage.googleapis.com/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "日文 OCR 單字學習"
+  },
+  "options_page": "options/options.html",
+  "commands": {
+    "start-ocr": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+J",
+        "mac": "Command+Shift+J"
+      },
+      "description": "啟動日文 OCR 選取"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/selector.js", "content/result-card.js"],
+      "css": ["content/selector.css", "content/result-card.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["wordlist/wordlist.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

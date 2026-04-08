@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>設定</title>
+<link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="wrap">
+    <h1>⚙️ 設定</h1>
+
+    <label>AI 供應商
+      <select id="provider">
+        <option value="claude">Anthropic Claude</option>
+        <option value="openai">OpenAI GPT</option>
+        <option value="gemini">Google Gemini</option>
+      </select>
+    </label>
+
+    <label>API Key
+      <input id="apiKey" type="password" placeholder="貼上你的 API Key">
+    </label>
+
+    <label>模型名稱（可選，留空使用預設）
+      <input id="model" type="text" placeholder="預設">
+    </label>
+
+    <button id="save">儲存</button>
+    <div id="status"></div>
+
+    <div class="help">
+      <p><strong>預設模型：</strong></p>
+      <ul>
+        <li>Claude: <code>claude-haiku-4-5-20251001</code></li>
+        <li>OpenAI: <code>gpt-4o-mini</code></li>
+        <li>Gemini: <code>gemini-2.0-flash</code></li>
+      </ul>
+      <p>API Key 只會保存在本機瀏覽器的 <code>chrome.storage.local</code>。</p>
+    </div>
+  </div>
+  <script type="module" src="options.js"></script>
+</body>
+</html>
