@@ -38,6 +38,7 @@ async function render() {
     <div class="card ${w.pinned ? 'pinned' : ''}" data-id="${w.id}">
       <div class="word">${escape(w.word)}</div>
       <div class="reading">${w.reading ? '【' + escape(w.reading) + '】' : ''}</div>
+      <div class="romaji">${escape(w.romaji)}</div>
       <div class="pos">${escape(w.pos)}</div>
       <div class="meaning">${escape(w.meaning_zh)}</div>
       <div class="example-jp">${escape(w.example_jp)}</div>
